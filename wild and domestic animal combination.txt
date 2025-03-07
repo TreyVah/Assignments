@@ -1,36 +1,46 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
+int main(){
+    int n;
+    int m;
+    int y=m+n;
+    printf("Enter number of wild animals;");
+    scanf("%d",&n);
 
-int main() {
-    int numberOfAnimals;
-    
-    printf("Enter the number of animals: ");
-    scanf("%d", &numberOfAnimals);
-    
-    // Dynamically allocate memory for animal names
-    char **animals = (char **)malloc(numberOfAnimals * sizeof(char *));
-    for (int x = 0; x < numberOfAnimals; x++) {
-        animals[x] = (char *)malloc(50 * sizeof(char)); // Assuming each animal name is less than 50 characters
+    char wild_animals[n][30];
+    for(int i=0;i<n;i++){
+        printf("Enter animal %d:",i+1);
+        scanf("%s",wild_animals[i]);
     }
-    
-    // Prompt the user to enter the names of the animals
-    printf("Enter the names of %d animals:\n", numberOfAnimals);
-    for (int x = 0; x < numberOfAnimals; x++) {
-        printf("Animal %d: ", x + 1);
-        scanf("%s", animals[x]);
+    printf("Enter number of domestic animals:");
+    scanf("%d",&m);
+
+    char domestic_animals[m][30];
+    for(int i=0;i<m;i++){
+        printf("Enter animal %d:",i+1);
+        scanf("%s",domestic_animals[i]);
     }
-    
-    // Print the list of animals
-    printf("\nList of Animals:\n");
-    for (int x = 0; x < numberOfAnimals; x++) {
-        printf("%s\n", animals[x]);
+
+
+
+    char all_animals[n + m][100];
+
+
+    for(int i = 0; i < n; i++){
+        strcpy(all_animals[i], wild_animals[i]);
     }
-    
-    // Free the allocated memory
-    for (int x = 0; x < numberOfAnimals; x++) {
-        free(animals[x]);
+
+
+    for(int i = 0; i < m; i++){
+        strcpy(all_animals[n + i], domestic_animals[i]);
     }
-    free(animals);
-    
-    return 0;
+
+
+    printf("All animals:\n");
+    for(int i = 0; i < n + m; i++){
+        printf("%s\n", all_animals[i]);
+    }
+
+
+return 0;
 }
