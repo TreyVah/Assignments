@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int numberOfAnimals;
+    
+    printf("Enter the number of animals: ");
+    scanf("%d", &numberOfAnimals);
+    
+    // Dynamically allocate memory for animal names
+    char **animals = (char **)malloc(numberOfAnimals * sizeof(char *));
+    for (int x = 0; x < numberOfAnimals; x++) {
+        animals[x] = (char *)malloc(50 * sizeof(char)); // Assuming each animal name is less than 50 characters
+    }
+    
+    // Prompt the user to enter the names of the animals
+    printf("Enter the names of %d animals:\n", numberOfAnimals);
+    for (int x = 0; x < numberOfAnimals; x++) {
+        printf("Animal %d: ", x + 1);
+        scanf("%s", animals[x]);
+    }
+    
+    // Print the list of animals
+    printf("\nList of Animals:\n");
+    for (int x = 0; x < numberOfAnimals; x++) {
+        printf("%s\n", animals[x]);
+    }
+    
+    // Free the allocated memory
+    for (int x = 0; x < numberOfAnimals; x++) {
+        free(animals[x]);
+    }
+    free(animals);
+    
+    return 0;
+}
